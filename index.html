@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Aya El Haddaj</title>
+  <meta name="claude:viewport-fit-sides" content="cover">
+  <meta name="description"
+    content="Portfolio d'Aya El Haddaj, élève ingénieure et développeuse full-stack, à la recherche d'un stage PFE.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@400;500;600;700&display=swap">
+  <style>
+    /* Mise en page : une colonne centrée, hero en deux colonnes (texte + photo en arche), projets en grandes fiches. */
+    :root {
+      --bg: #fbf7f5;
+      /* fond crème, comme la bannière LinkedIn */
+      --surface: #ffffff;
+      /* cartes */
+      --blush: #f3e6e7;
+      /* rose très pâle */
+      --rose: #a46a7b;
+      /* vieux rose : la couleur d'accent */
+      --rose-soft: #d4a5b0;
+      /* rose poudré */
+      --camel: #d8bfa9;
+      /* beige du fond de la photo */
+      --ink: #3b2a30;
+      /* texte principal */
+      --muted: #7b686e;
+      /* texte secondaire */
+      --line: #eadddf;
+      /* filets */
+      --display: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+      --body: "Manrope", "Segoe UI", system-ui, -apple-system, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1d1618;
+        --surface: #262022;
+        --blush: #34272b;
+        --rose: #e2a9b8;
+        --rose-soft: #8f5f6d;
+        --camel: #6b584b;
+        --ink: #f4eaec;
+        --muted: #b8a6ab;
+        --line: #3a2e31;
+        color-scheme: dark;
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #1d1618;
+      --surface: #262022;
+      --blush: #34272b;
+      --rose: #e2a9b8;
+      --rose-soft: #8f5f6d;
+      --camel: #6b584b;
+      --ink: #f4eaec;
+      --muted: #b8a6ab;
+      --line: #3a2e31;
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 16px;
+      line-height: 1.65;
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0 0 auto;
+      height: env(safe-area-inset-top, 0px);
+      z-index: 10;
+      background: var(--bg);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--rose);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* --- Barre de navigation --- */
+    .nav {
+      position: sticky;
+      top: env(safe-area-inset-top, 0px);
+      z-index: 5;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      margin: 0 calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+      padding-left: max(16px, env(safe-area-inset-left, 0px));
+      padding-right: max(16px, env(safe-area-inset-right, 0px));
+    }
+
+    .nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 14px;
+    }
+
+    .brand {
+      font-family: var(--display);
+      font-size: 22px;
+      letter-spacing: .18em;
+      text-decoration: none;
+      color: var(--rose);
+    }
+
+    .nav ul {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    .nav ul a {
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: .02em;
+    }
+
+    .nav ul a:hover,
+    .nav ul a.active {
+      color: var(--ink);
+    }
+
+    @media (max-width: 640px) {
+      .nav ul {
+        display: none;
+      }
+    }
+
+    /* --- Hero --- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 56px;
+      align-items: center;
+      padding-block: 72px 56px;
+      position: relative;
+    }
+
+    .hero-text {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin: 0 0 18px;
+    }
+
+    .name {
+      font-family: var(--display);
+      font-weight: 300;
+      font-size: clamp(44px, 7vw, 76px);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      line-height: 1.05;
+      margin: 0;
+      text-wrap: balance;
+      animation: rise .8s ease-out both;
+    }
+
+    .rule {
+      width: 120px;
+      height: 1px;
+      background: var(--rose-soft);
+      margin: 26px 0;
+    }
+
+    .role {
+      font-size: 13px;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .lead {
+      font-size: 18px;
+      max-width: 34em;
+      margin: 0 0 28px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border: 1px solid var(--rose-soft);
+      border-radius: 999px;
+      font-size: 14px;
+      background: var(--surface);
+    }
+
+    .status::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #3f9b6a;
+      box-shadow: 0 0 0 4px color-mix(in srgb, #3f9b6a 20%, transparent);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font: 600 14px var(--body);
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid var(--rose);
+      transition: transform .2s, background .2s, color .2s;
+    }
+
+    .btn.primary {
+      background: var(--rose);
+      color: var(--bg);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: var(--rose);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .portrait {
+      position: relative;
+      justify-self: center;
+      width: min(360px, 100%);
+    }
+
+    .portrait .mono {
+      position: absolute;
+      inset: -40px auto auto -60px;
+      font-family: var(--display);
+      font-weight: 300;
+      font-size: 260px;
+      line-height: 1;
+      color: var(--blush);
+      z-index: 0;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .arch {
+      position: relative;
+      z-index: 1;
+      aspect-ratio: 4 / 5;
+      max-width: 100%;
+      border-radius: 999px 999px 18px 18px;
+      overflow: hidden;
+      background: var(--camel);
+      box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--rose) 45%, transparent);
+    }
+
+    .arch img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-block: 40px;
+      }
+
+      .portrait {
+        order: -1;
+        width: min(260px, 70%);
+      }
+
+      .portrait .mono {
+        font-size: 180px;
+        left: -40px;
+      }
+    }
+
+    /* --- Sections --- */
+    section {
+      padding-block: 64px;
+      scroll-margin-top: 70px;
+    }
+
+    .sec-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(34px, 5vw, 46px);
+      margin: 0;
+      letter-spacing: .02em;
+    }
+
+    h2 em {
+      color: var(--rose);
+      font-style: italic;
+      font-weight: 300;
+    }
+
+    /* --- Filtres des projets --- */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      font: 500 13px var(--body);
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      transition: all .2s;
+    }
+
+    .chip:hover {
+      color: var(--ink);
+      border-color: var(--rose-soft);
+    }
+
+    .chip[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    /* --- Fiches projets --- */
+    .projects {
+      display: grid;
+      gap: 28px;
+    }
+
+    .project {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 36px;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+    }
+
+    .project:nth-child(even) .gallery {
+      order: 2;
+    }
+
+    .project>* {
+      min-width: 0;
+    }
+
+    .gallery .main {
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--blush);
+      cursor: zoom-in;
+      aspect-ratio: 16 / 10;
+    }
+
+    .gallery .main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+      transition: transform .5s;
+    }
+
+    .gallery .main:hover img {
+      transform: scale(1.03);
+    }
+
+    .thumbs {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .thumbs button {
+      width: 64px;
+      height: 42px;
+      padding: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      background: var(--blush);
+      opacity: .6;
+      transition: opacity .2s, border-color .2s;
+    }
+
+    .thumbs button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top left;
+      display: block;
+    }
+
+    .thumbs button[aria-current="true"],
+    .thumbs button:hover {
+      opacity: 1;
+      border-color: var(--rose);
+    }
+
+    .meta {
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin: 0 0 8px;
+    }
+
+    .project h3 {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 32px;
+      margin: 0 0 6px;
+      line-height: 1.15;
+    }
+
+    .where {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0 0 18px;
+    }
+
+    .block {
+      margin: 0 0 14px;
+    }
+
+    .block dt {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .block dd {
+      margin: 2px 0 0;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 18px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--blush);
+      color: var(--ink);
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 18px;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: var(--rose);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid var(--rose-soft);
+    }
+
+    .links span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 860px) {
+      .project {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 22px;
+      }
+
+      .project:nth-child(even) .gallery {
+        order: 0;
+      }
+    }
+
+    .soon {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      padding: 22px 26px;
+      border: 1px dashed var(--rose-soft);
+      border-radius: 22px;
+      color: var(--muted);
+    }
+
+    .soon b {
+      color: var(--ink);
+    }
+
+    .soon .pill {
+      flex: none;
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--rose);
+      border: 1px solid var(--rose-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    @media (max-width: 560px) {
+      .soon {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* --- Parcours : deux colonnes (formations / expériences) --- */
+    .paths {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .paths>div {
+      min-width: 0;
+    }
+
+    .col-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin: 0 0 14px;
+    }
+
+    .timeline {
+      list-style: none;
+      margin: 0;
+      padding: 0 0 0 26px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 10px;
+      bottom: 10px;
+      width: 1px;
+      background: var(--line);
+    }
+
+    .timeline li {
+      padding-block: 12px;
+      position: relative;
+    }
+
+    .timeline li::after {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 20px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 2px solid var(--rose-soft);
+    }
+
+    .timeline.work li::after {
+      background: var(--rose);
+      border-color: var(--rose);
+    }
+
+    .timeline time {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timeline h4 {
+      margin: 2px 0 0;
+      font-size: 17px;
+      font-weight: 600;
+    }
+
+    .timeline p {
+      margin: 2px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    @media (max-width: 760px) {
+      .paths {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+    }
+
+    /* --- Compétences --- */
+    .skills {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .skill {
+      padding: 20px 20px 22px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill h4 {
+      margin: 0 0 8px;
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 22px;
+    }
+
+    .skill p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* --- Contact --- */
+    .contact {
+      text-align: center;
+      padding-block: 80px 60px;
+    }
+
+    .contact h2 {
+      margin-bottom: 12px;
+    }
+
+    .contact p {
+      color: var(--muted);
+      max-width: 34em;
+      margin: 0 auto 28px;
+    }
+
+    .mail {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      font-family: var(--display);
+      font-size: clamp(22px, 4vw, 32px);
+      margin-bottom: 26px;
+    }
+
+    .mail span {
+      user-select: all;
+      overflow-wrap: anywhere;
+    }
+
+    .copy {
+      font: 600 13px var(--body);
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--rose-soft);
+      background: var(--surface);
+      color: var(--rose);
+      cursor: pointer;
+    }
+
+    .contact .actions {
+      justify-content: center;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      padding-block: 26px 40px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* --- Agrandissement des captures --- */
+    dialog {
+      border: 0;
+      padding: 0;
+      background: transparent;
+      max-width: min(1200px, 94vw);
+      max-height: 92vh;
+    }
+
+    dialog::backdrop {
+      background: rgba(20, 12, 15, .82);
+    }
+
+    dialog img {
+      display: block;
+      max-width: 100%;
+      max-height: 84vh;
+      border-radius: 12px;
+      margin: 0 auto;
+    }
+
+    dialog p {
+      color: #f4eaec;
+      text-align: center;
+      font-size: 14px;
+      margin: 10px 0 0;
+    }
+
+    dialog button {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      border: 0;
+      border-radius: 999px;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      background: #fff;
+      color: #3b2a30;
+      font-size: 20px;
+    }
+
+    @keyframes rise {
+      from {
+        transform: translateY(14px);
+      }
+
+      to {
+        transform: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+
+  <nav class="nav" aria-label="Navigation principale">
+    <div class="wrap">
+      <a class="brand" href="#top">A · E</a>
+      <ul>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#parcours">Parcours</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="wrap" id="top">
+
+    <!-- Présentation -->
+    <header class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">Portfolio · 2026</p>
+        <h1 class="name">Aya<br>El Haddaj</h1>
+        <div class="rule"></div>
+        <p class="role">Élève ingénieure · Développeuse Full-Stack</p>
+        <p class="lead">Je conçois des applications web complètes, du besoin des utilisateurs jusqu'aux tests, et j'aime
+          y intégrer l'intelligence artificielle.</p>
+        <span class="status">Je recherche un stage PFE de 6 mois à partir de février 2027</span>
+        <div class="actions">
+          <a class="btn primary" href="#projets">Voir mes projets</a>
+          <a class="btn ghost" href="assets/CV_Aya_EL_HADDAJ.pdf" target="_blank" rel="noopener">Mon CV (PDF)</a>
+        </div>
+      </div>
+      <div class="portrait">
+        <div class="mono" aria-hidden="true">AE</div>
+        <div class="arch"><img src="assets/aya.jpg" alt="Portrait d'Aya El Haddaj" width="674" height="720"></div>
+      </div>
+    </header>
+
+
+    <!-- Projets -->
+    <section id="projets">
+      <div class="sec-head">
+        <h2>Mes <em>projets</em></h2>
+        <div class="filters" role="group" aria-label="Filtrer les projets">
+          <button class="chip" aria-pressed="true" data-filter="all">Tous</button>
+          <button class="chip" aria-pressed="false" data-filter="stage">Stages</button>
+          <button class="chip" aria-pressed="false" data-filter="academique">Académiques</button>
+          <button class="chip" aria-pressed="false" data-filter="ia">IA</button>
+        </div>
+      </div>
+
+      <div class="projects">
+
+        <!-- TeleTrack -->
+        <article class="project" data-tags="stage">
+          <div class="gallery">
+            <button class="main" type="button" aria-label="Agrandir la capture"><img src="assets/teletrack-1.png"
+                alt="Tableau de bord de TeleTrack" loading="lazy"></button>
+            <div class="thumbs">
+              <button type="button" aria-current="true" data-src="assets/teletrack-1.png"
+                data-alt="Tableau de bord de TeleTrack"><img src="assets/teletrack-1.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/teletrack-2.png"
+                data-alt="Details du ticket"><img src="assets/teletrack-2.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/teletrack-3.png"
+                data-alt="Formulaire de déclaration d'un incident"><img src="assets/teletrack-3.png" alt=""></button>
+            </div>
+          </div>
+          <div>
+            <p class="meta">Stage · Juillet – Août 2026</p>
+            <h3>TeleTrack</h3>
+            <p class="where">Banque Populaire Rabat-Kénitra · Siège régional, Département Informatique</p>
+            <dl>
+              <div class="block">
+                <dt>Le besoin</dt>
+                <dd>Les 216 agences du réseau signalaient leurs pannes téléphoniques par appel, sans suivi ni
+                  historique.</dd>
+              </div>
+              <div class="block">
+                <dt>La solution</dt>
+                <dd>Une application web qui centralise les incidents : les agences déclarent et suivent leurs tickets,
+                  les techniciens les traitent et pilotent l'activité avec un tableau de bord.</dd>
+              </div>
+              <div class="block">
+                <dt>Mon rôle</dt>
+                <dd>Projet réalisé seule : observation en agence, cahier des charges, maquettes, conception UML,
+                  développement et tests automatisés.</dd>
+              </div>
+            </dl>
+            <ul class="tags">
+              <li>React</li>
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>MySQL</li>
+              <li>JWT</li>
+              <li>Jest</li>
+              <li>Jira</li>
+            </ul>
+            <div class="links"><span>Code privé : projet interne à la banque</span></div>
+          </div>
+        </article>
+
+        <!-- LinguaTalk -->
+        <article class="project" data-tags="academique ia">
+          <div class="gallery">
+            <button class="main" type="button" aria-label="Agrandir la capture"><img src="assets/linguatalk-1.png"
+                alt="Accueil de LinguaTalk" loading="lazy"></button>
+            <div class="thumbs">
+              <button type="button" aria-current="true" data-src="assets/linguatalk-1.png"
+                data-alt="Accueil de LinguaTalk"><img src="assets/linguatalk-1.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/linguatalk-2.png"
+                data-alt="Learning Log : les phrases apprises"><img src="assets/linguatalk-2.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/linguatalk-3.png"
+                data-alt="Gestion des scénarios (administration)"><img src="assets/linguatalk-3.png" alt=""></button>
+            </div>
+          </div>
+          <div>
+            <p class="meta">Projet de fin d'année · Avril – Juin 2026</p>
+            <h3>LinguaTalk</h3>
+            <p class="where">EMSI Rabat · Réalisé en binôme</p>
+            <dl>
+              <div class="block">
+                <dt>Le besoin</dt>
+                <dd>Beaucoup d'apprenants ont des bases dans une langue, mais nulle part où pratiquer la conversation.
+                </dd>
+              </div>
+              <div class="block">
+                <dt>La solution</dt>
+                <dd>Des conversations avec une IA dans 40 scénarios, en 8 langues. L'IA s'adapte au niveau (A1 à C2),
+                  corrige les erreurs, et les phrases utiles sont gardées dans un Learning Log et une MindMap.</dd>
+              </div>
+              <div class="block">
+                <dt>Mon rôle</dt>
+                <dd>Le backend et l'intégration de l'IA, en méthode Scrum sur 9 sprints.</dd>
+              </div>
+            </dl>
+            <ul class="tags">
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>MongoDB</li>
+              <li>OpenAI API</li>
+              <li>React</li>
+              <li>Scrum</li>
+            </ul>
+            <div class="links"><a href="https://linguatalk.vercel.app" target="_blank" rel="noopener">Tester la
+                plateforme en ligne ↗</a></div>
+          </div>
+        </article>
+
+        <!-- OrientAI -->
+        <article class="project" data-tags="academique ia">
+          <div class="gallery">
+            <button class="main" type="button" aria-label="Agrandir la capture"><img src="assets/orientai-1.jpg"
+                alt="Tableau de bord étudiant d'OrientAI" loading="lazy"></button>
+            <div class="thumbs">
+              <button type="button" aria-current="true" data-src="assets/orientai-1.png"
+                data-alt="Tableau de bord étudiant"><img src="assets/orientai-1.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/orientai-2.png"
+                data-alt="Analyse du profil et conseils de l'IA"><img src="assets/orientai-2.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/orientai-4.png"
+                data-alt="Tableau de bord administrateur"><img src="assets/orientai-4.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/orientai-3.png"
+                data-alt="Tableau de bord professeur"><img src="assets/orientai-3.png" alt=""></button>
+            </div>
+          </div>
+          <div>
+            <p class="meta">Compétition AI Nexus · Mars 2026</p>
+            <h3>OrientAI</h3>
+            <p class="where">EMSI Rabat · Équipe de 4</p>
+            <dl>
+              <div class="block">
+                <dt>Le besoin</dt>
+                <dd>84 % des 165 étudiants interrogés se sentaient perdus face à leurs difficultés, sans savoir par où
+                  commencer.</dd>
+              </div>
+              <div class="block">
+                <dt>La solution</dt>
+                <dd>L'étudiant indique ses difficultés dans une matière. L'IA lui propose un plan de travail sur 10
+                  jours avec des ressources validées par l'école, puis l'accompagne avec un chat de suivi.</dd>
+              </div>
+              <div class="block">
+                <dt>Mon rôle</dt>
+                <dd>Le parcours étudiant et l'intégration de l'IA.</dd>
+              </div>
+            </dl>
+            <ul class="tags">
+              <li>React</li>
+              <li>Tailwind</li>
+              <li>Node.js</li>
+              <li>MongoDB</li>
+              <li>Groq · Llama 3.3</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Sypex -->
+        <article class="project" data-tags="stage">
+          <div class="gallery">
+            <button class="main" type="button" aria-label="Agrandir la capture"><img src="assets/sypex-1.jpg"
+                alt="Liste des portefeuilles OPCVM" loading="lazy"></button>
+            <div class="thumbs">
+              <button type="button" aria-current="true" data-src="assets/sypex-1.png"
+                data-alt="Liste des portefeuilles OPCVM"><img src="assets/sypex-1.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/sypex-2.png"
+                data-alt="Évolution de la valeur liquidative d'un portefeuille"><img src="assets/sypex-2.png"
+                  alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/sypex-3.png"
+                data-alt="Détail d'un portefeuille"><img src="assets/sypex-3.png" alt=""></button>
+              <button type="button" aria-current="false" data-src="assets/sypex-4.png"
+                data-alt="Détail d'une transaction"><img src="assets/sypex-4.png" alt=""></button>
+            </div>
+          </div>
+          <div>
+            <p class="meta">Stage · Mai – Juin 2024</p>
+            <h3>Gestion de portefeuilles OPCVM</h3>
+            <p class="where">Sypex, fintech · Casablanca (hybride)</p>
+            <dl>
+              <div class="block">
+                <dt>La solution</dt>
+                <dd>Une application pour gérer les clients, les sociétés de gestion, les portefeuilles et les
+                  transactions, avec des graphiques d'évolution et des exports Excel.</dd>
+              </div>
+              <div class="block">
+                <dt>Mon rôle</dt>
+                <dd>La conception de la base de données et le développement, après une semaine de prise en main de
+                  technologies nouvelles pour moi.</dd>
+              </div>
+            </dl>
+            <ul class="tags">
+              <li>Java EE</li>
+              <li>JSF</li>
+              <li>PrimeFaces</li>
+              <li>Hibernate</li>
+              <li>MySQL</li>
+              <li>WildFly</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- En cours -->
+        <div class="soon" data-tags="academique">
+          <span class="pill">En cours</span>
+          <p style="margin:0"><b>Aman Senior</b> · Projet de fin d'année 2026-2027, en binôme. Une application mobile en
+            Flutter pour l'assistance et le suivi quotidien des personnes âgées. Nous sommes en phase de conception.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Parcours : formations et expériences séparées -->
+    <section id="parcours">
+      <div class="sec-head">
+        <h2>Mon <em>parcours</em></h2>
+      </div>
+      <div class="paths">
+        <div>
+          <h3 class="col-title">Formations</h3>
+          <ol class="timeline">
+            <li><time>2025 – auj.</time>
+              <div>
+                <h4>Cycle ingénieur · Développement Digital et Systèmes d'Information</h4>
+                <p>EMSI · École Marocaine des Sciences de l'Ingénieur, Rabat</p>
+              </div>
+            </li>
+            <li><time>2024 – 2025</time>
+              <div>
+                <h4>Licence professionnelle · Ingénierie des applications web et mobiles</h4>
+                <p>EST Salé</p>
+              </div>
+            </li>
+            <li><time>2022 – 2024</time>
+              <div>
+                <h4>DUT · Génie informatique</h4>
+                <p>EST Salé</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div>
+          <h3 class="col-title">Expériences</h3>
+          <ol class="timeline work">
+            <li><time>Juil. – août 2026</time>
+              <div>
+                <h4>Stage · Banque Populaire Rabat-Kénitra</h4>
+                <p>Siège régional, Département Informatique · Application web de suivi des incidents téléphoniques</p>
+              </div>
+            </li>
+            <li><time>Mai – juin 2024</time>
+              <div>
+                <h4>Stage de fin d'études DUT · Sypex</h4>
+                <p>Casablanca (hybride) · Application Java EE de gestion de portefeuilles OPCVM</p>
+              </div>
+            </li>
+            <li><time>Avr. – mai 2023</time>
+              <div>
+                <h4>Stage d'initiation · EST Salé</h4>
+                <p>Application web PHP de gestion des stages étudiants</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Compétences -->
+    <section id="competences">
+      <div class="sec-head">
+        <h2>Mes <em>compétences</em></h2>
+      </div>
+      <div class="skills">
+        <div class="skill">
+          <h4>Frontend</h4>
+          <p>React, JavaScript, HTML, CSS, Tailwind CSS</p>
+        </div>
+        <div class="skill">
+          <h4>Backend</h4>
+          <p>Node.js, Express, PHP, Java EE (Hibernate), Spring Boot, API REST</p>
+        </div>
+        <div class="skill">
+          <h4>Mobile</h4>
+          <p>Flutter, Dart</p>
+        </div>
+        <div class="skill">
+          <h4>Données</h4>
+          <p>MySQL, MongoDB</p>
+        </div>
+        <div class="skill">
+          <h4>Intelligence artificielle</h4>
+          <p>API OpenAI, Groq, prompt engineering</p>
+        </div>
+        <div class="skill">
+          <h4>Conception et méthodes</h4>
+          <p>UML, Merise, MVC, Agile / Scrum</p>
+        </div>
+        <div class="skill">
+          <h4>Outils</h4>
+          <p>Git, GitHub, Postman, Jira, Jest, Docker</p>
+        </div>
+        <div class="skill">
+          <h4>Savoir-être</h4>
+          <p>Autonomie, travail en équipe, adaptabilité, attention aux détails</p>
+        </div>
+        <div class="skill">
+          <h4>Langues</h4>
+          <p>Arabe, français, anglais</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <h2>Travaillons <em>ensemble</em></h2>
+      <p>Je recherche un stage de fin d'études de 6 mois à partir de février 2027, à Rabat, Salé, Kénitra, Casablanca ou
+        en télétravail.</p>
+      <div class="mail"><span id="email">ayaelhaddaj619@gmail.com</span><button class="copy" id="copy"
+          type="button">Copier</button></div>
+      <div class="actions">
+        <a class="btn primary" href="https://www.linkedin.com/in/aya-el-haddaj" target="_blank"
+          rel="noopener">LinkedIn</a>
+        <a class="btn ghost" href="assets/CV_Aya_EL_HADDAJ.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>Aya El Haddaj · 2026</footer>
+
+  <!-- Fenêtre d'agrandissement des captures -->
+  <dialog id="lightbox" aria-label="Capture agrandie">
+    <button type="button" id="close" aria-label="Fermer">×</button>
+    <img id="lb-img" src="" alt="">
+    <p id="lb-cap"></p>
+  </dialog>
+
+  <script>
+    // 1) Filtres des projets : on affiche seulement les fiches qui ont le tag choisi
+    const chips = document.querySelectorAll(".chip");
+    const cards = document.querySelectorAll(".projects [data-tags]");
+    chips.forEach((chip) =>
+    {
+      chip.addEventListener("click", () =>
+      {
+        const filtre = chip.dataset.filter;
+        chips.forEach((c) => c.setAttribute("aria-pressed", String(c === chip)));
+        cards.forEach((card) =>
+        {
+          const tags = card.dataset.tags.split(" ");
+          card.hidden = !(filtre === "all" || tags.includes(filtre));
+        });
+      });
+    });
+
+    // 2) Galeries : un clic sur une miniature change la grande image
+    document.querySelectorAll(".gallery").forEach((gallery) =>
+    {
+      const mainImg = gallery.querySelector(".main img");
+      gallery.querySelectorAll(".thumbs button").forEach((thumb) =>
+      {
+        thumb.addEventListener("click", () =>
+        {
+          mainImg.src = thumb.dataset.src;
+          mainImg.alt = thumb.dataset.alt;
+          gallery.querySelectorAll(".thumbs button").forEach((t) => t.setAttribute("aria-current", String(t === thumb)));
+        });
+      });
+    });
+
+    // 3) Agrandissement : un clic sur la grande image l'ouvre en plein écran
+    const lightbox = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lb-img");
+    const lbCap = document.getElementById("lb-cap");
+    document.querySelectorAll(".gallery .main").forEach((btn) =>
+    {
+      btn.addEventListener("click", () =>
+      {
+        const img = btn.querySelector("img");
+        lbImg.src = img.src;
+        lbImg.alt = img.alt;
+        lbCap.textContent = img.alt;
+        if (lightbox.showModal) lightbox.showModal();
+      });
+    });
+    document.getElementById("close").addEventListener("click", () => lightbox.close());
+    lightbox.addEventListener("click", (e) => { if (e.target === lightbox) lightbox.close(); });
+
+    // 4) Copier l'adresse email (si le navigateur refuse, on sélectionne le texte)
+    const copyBtn = document.getElementById("copy");
+    copyBtn.addEventListener("click", async () =>
+    {
+      const email = document.getElementById("email");
+      try
+      {
+        await navigator.clipboard.writeText(email.textContent);
+        copyBtn.textContent = "Copiée";
+      } catch (err)
+      {
+        const range = document.createRange();
+        range.selectNodeContents(email);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        copyBtn.textContent = "Sélectionnée";
+      }
+      setTimeout(() => { copyBtn.textContent = "Copier"; }, 2000);
+    });
+
+    // 5) Menu : on souligne la section visible à l'écran
+    const links = document.querySelectorAll(".nav ul a");
+    const observer = new IntersectionObserver((entries) =>
+    {
+      entries.forEach((entry) =>
+      {
+        if (entry.isIntersecting)
+        {
+          links.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === "#" + entry.target.id));
+        }
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll("main section[id]").forEach((s) => observer.observe(s));
+  </script>
+
+</body>
+
+</html>
